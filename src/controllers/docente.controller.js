@@ -16,14 +16,17 @@ export const getDocentes = async (req, res) => {
 export const CrearDocente = async (req, res) => {
     try {
         //extraer los valores del json que lleva en el body
-        const { primerNombre, segundoNombre, primerApellido, segundoApellido,
+        const { tipoidentificacion,identificacion, primerNombre, segundoNombre, primerApellido, segundoApellido,
             email, telefono, programa } = req.body
+console.log(req.body)
+
+
         const [rows] = await pool.query(`
-            INSERT into docente(primernombre,segundonombre,primerapellido,segundoapellido,email,telefono,programa)
-            VALUES(?,?,?,?,?,?,?)`, [primerNombre, segundoNombre, primerApellido, segundoApellido,
-            email, telefono, programa])
+            INSERT into docente(tipoIdentificacion,identificacion,primernombre,segundonombre,primerapellido,segundoapellido,email,telefono,programa)
+            VALUES(?,?,?,?,?,?,?,?,?)`, [tipoidentificacion,identificacion,primerNombre, segundoNombre, 
+                primerApellido, segundoApellido,email, telefono, programa])
         res.send({
-            id: rows.insertId,primerNombre, segundoNombre, primerApellido, 
+            id: rows.insertId,tipoidentificacion,identificacion,primerNombre, segundoNombre, primerApellido, 
             segundoApellido,email, telefono, programa
         })
     } catch (error) {
