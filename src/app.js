@@ -1,7 +1,7 @@
 import express from 'express';
 import docentesRoutes from './routes/docente.routes.js'
 
-const cors = require('cors')
+import cors from 'cors'
 
 const app = express()
 app.use(cors())
